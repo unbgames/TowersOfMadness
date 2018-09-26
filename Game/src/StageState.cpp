@@ -820,7 +820,7 @@ void StageState::LoadAssets(void) const{
 	Resources::GetSound( ASSETS_PATH("/audio/Ambiente/Trovao.wav") );
 	Resources::GetSound( ASSETS_PATH("/audio/Ambiente/andando2.wav") );
 	Resources::GetSound( ASSETS_PATH("/audio/Interface/Click1.wav") );
-	Resources::GetFont( ASSETS_PATH("/font/SHPinscher-Regular.otf", 95) );
+	Resources::GetFont( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95 );
 	// Resources::GetImage();
 	// Resources::GetMusic();
 	// Resources::GetSound();

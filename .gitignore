@@ -39,6 +39,7 @@ bin/*
 JOGO*
 dep/*
 */dep
+build/*
 
 
 .idea/*

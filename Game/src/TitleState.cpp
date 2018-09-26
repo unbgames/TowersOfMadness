@@ -231,5 +231,5 @@ void TitleState::LoadAssets(void) const{
 	Resources::GetImage( ASSETS_PATH("/img/UI/main-menu/spritesheettitle.png") );
 	Resources::GetMusic( ASSETS_PATH("/audio/trilha_sonora/main_title_.ogg") );
 	Resources::GetMusic( ASSETS_PATH("/audio/Interface/Click1.wav") );
-	Resources::GetFont( ASSETS_PATH("/font/SHPinscher-Regular.otf", 95) );
+	Resources::GetFont( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95 );
 }
