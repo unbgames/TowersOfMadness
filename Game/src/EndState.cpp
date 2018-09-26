@@ -7,6 +7,8 @@
 
 #include <string>
 
+#include "config.h"
+
 #define COLOR_WIN		{183,156,245,255}
 #define COLOR_LOSE		{132,132,132,100}
 
@@ -21,14 +23,14 @@ void StartFinalLoop() {
 }
 
 EndState::EndState(EndStateData stateData)
-		: music("./assets/audio/tela_de_vitoria_derrota/loop_tela_vitoria_derrota.ogg")
-		, intro( (stateData.playerVictory) ? "./assets/audio/tela_de_vitoria_derrota/vitoria.ogg" : "./assets/audio/tela_de_vitoria_derrota/derrota.ogg")
+		: music( ASSETS_PATH("/audio/tela_de_vitoria_derrota/loop_tela_vitoria_derrota.ogg") )
+		, intro( (stateData.playerVictory) ? ASSETS_PATH("/audio/tela_de_vitoria_derrota/vitoria.ogg") : ASSETS_PATH("/audio/tela_de_vitoria_derrota/derrota.ogg"))
 		, HUDcanvas()
-		, bg( (stateData.playerVictory) ? "./assets/img/UI/end-game/win.jpg" : "./assets/img/UI/end-game/lose.jpg")
-		, venceuText("./assets/font/SHPinscher-Regular.otf", 95, UItext::TextStyle::BLENDED, COLOR_WIN, stateData.playerVictory ? std::string("Vit") + (char)0xF3 /*ó*/ + "ria" : "Derrota")
+		, bg( (stateData.playerVictory) ? ASSETS_PATH("/img/UI/end-game/win.jpg") : ASSETS_PATH("/img/UI/end-game/lose.jpg") )
+		, venceuText( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95, UItext::TextStyle::BLENDED, COLOR_WIN, stateData.playerVictory ? std::string("Vit") + (char)0xF3 /*ó*/ + "ria" : "Derrota")
 		, optionsGroup()
-		, playBtn("./assets/font/SHPinscher-Regular.otf", 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Menu Principal")
-		, exitBtn("./assets/font/SHPinscher-Regular.otf", 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Sair") {
+		, playBtn( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Menu Principal")
+		, exitBtn( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Sair") {
 	Resources::ChangeMusicVolume(0);
 	Resources::ChangeSoundVolume(0);
 
@@ -112,12 +114,12 @@ void EndState::StartLoop() {
 }
 
 void EndState::LoadAssets(void) const{
-	Resources::GetImage("./assets/img/UI/end-game/win.jpg");
-	Resources::GetImage("./assets/img/UI/end-game/lose.jpg");
-	Resources::GetFont("./assets/font/SHPinscher-Regular.otf", 32);
-	Resources::GetMusic("./assets/audio/tela_de_vitoria_derrota/vitoria.ogg");
-	Resources::GetMusic("./assets/audio/tela_de_vitoria_derrota/derrota.ogg");
-	Resources::GetMusic("./assets/audio/tela_de_vitoria_derrota/loop_tela_vitoria_derrota.ogg");
+	Resources::GetImage( ASSETS_PATH("/img/UI/end-game/win.jpg") );
+	Resources::GetImage( ASSETS_PATH("/img/UI/end-game/lose.jpg") );
+	Resources::GetFont( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 32);
+	Resources::GetMusic( ASSETS_PATH("/audio/tela_de_vitoria_derrota/vitoria.ogg") );
+	Resources::GetMusic( ASSETS_PATH("/audio/tela_de_vitoria_derrota/derrota.ogg") );
+	Resources::GetMusic( ASSETS_PATH("/audio/tela_de_vitoria_derrota/loop_tela_vitoria_derrota.ogg") );
 }
 
 void EndState::Close(void) {

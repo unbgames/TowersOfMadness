@@ -1,8 +1,10 @@
 #include "HitPoints.h"
 
+#include "config.h"
+
 HitPoints::HitPoints(uint hp,GameObject &associated, float scaleX)
-		: healthBar("./assets/img/effect/health_bar.png")
-		, healthColor("./assets/img/effect/health_color.png")
+		: healthBar( ASSETS_PATH("/img/effect/health_bar.png") )
+		, healthColor( ASSETS_PATH("/img/effect/health_color.png") )
 		, associated(associated) {
 			
 	this->hp = (int)hp;

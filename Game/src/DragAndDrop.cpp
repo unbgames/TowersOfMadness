@@ -5,13 +5,15 @@
 #include "InputManager.h"
 #include "TileMap.h"
 
+#include "config.h"
+
 DragAndDrop::DragAndDrop(TileMap &map,Vec2 associatedInitialPos, GameObject &associated, bool redrag, bool dragOnActionHold)
 			: dragOnHold(dragOnActionHold)
 			, associatedInitialPos(associatedInitialPos)
 			, tileMap(map)
 			, redrag(redrag)
 			, associated(associated)
-			, dragNDrop("./assets/audio/Acoes/Consertando1.wav") {
+			, dragNDrop( ASSETS_PATH("/audio/Acoes/Consertando1.wav") ) {
 }
 
 void DragAndDrop::Update(float dt) {

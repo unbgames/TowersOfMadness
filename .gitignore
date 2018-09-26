@@ -39,9 +39,11 @@ bin/*
 JOGO*
 dep/*
 */dep
+build/*
 
 
 .idea/*
+.vscode/*
 cmake-build-debug/
 
 #arquivos da IDE Clion
@@ -52,4 +54,4 @@ cmake-build-debug/*
 
 
 #arquivos da IDE qt
-EngineIDJ.files
+EngineIDJ.*
