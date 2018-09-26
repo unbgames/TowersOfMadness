@@ -1,5 +1,7 @@
 #include "Aura.h"
 
+#include "config.h"
+
 Aura::Aura(GameObject &associated,
 			Enemy::Event auraType,
 			float auraRange,
@@ -13,19 +15,19 @@ Aura::Aura(GameObject &associated,
 		finder(finder),
 		targetType(targetType){
 	if(Enemy::Event::SMOKE == auraType){
-		sp = Sprite("./assets/img/SpriteSheets/aura_spritesheet.png", false, 0.3f, 7);
+		sp = Sprite( ASSETS_PATH("/img/SpriteSheets/aura_spritesheet.png"), false, 0.3f, 7);
 		sp.colorMultiplier = Color(179, 150, 120);
-		sp2 = Sprite("./assets/img/SpriteSheets/aura_spritesheet.png", false, 0.3f, 7);
+		sp2 = Sprite( ASSETS_PATH("/img/SpriteSheets/aura_spritesheet.png"), false, 0.3f, 7);
 		sp2.colorMultiplier = Color(179, 150, 120);
 		sp2.SetFrame(3);
 	}
 	else if(Enemy::Event::STUN == auraType){
-		sp = Sprite("./assets/img/SpriteSheets/stun_spritesheet.png", false, 0.3f, 7);
-		sp2 = Sprite("./assets/img/SpriteSheets/stun_spritesheet.png", false, 0.3f, 7);
+		sp = Sprite( ASSETS_PATH("/img/SpriteSheets/stun_spritesheet.png"), false, 0.3f, 7);
+		sp2 = Sprite( ASSETS_PATH("/img/SpriteSheets/stun_spritesheet.png"), false, 0.3f, 7);
 		sp2.SetFrame(3);
 	}
 	else if(Enemy::Event::HEALER == auraType){
-		sp = Sprite("./assets/img/SpriteSheets/aura_spritesheet.png", false, 0.3f, 7);
+		sp = Sprite( ASSETS_PATH("/img/SpriteSheets/aura_spritesheet.png"), false, 0.3f, 7);
 	}
 	sp.ScaleX(2*auraRange/(float)sp.GetWidth());
 	sp.ScaleY(2*auraRange/(float)sp.GetHeight());

@@ -10,8 +10,10 @@
 #include "HitPoints.h"
 #include "Timer.h"
 
+#include "config.h"
+
 Enemy::Enemy(Vec2 position, int enemyIndex, EnemyData enemyData, uint baseHP, uint endPoint, TileMap & tileMap, WaveManager &wManager)
-	: sp(EnemyDirections::ENEMY_DIRECTIONS_SIZE), dead(false), direction(EnemyDirections::DOWN), lastEvent(Enemy::Event::NONE), walkingSound("./assets/audio/Ambiente/andando2.wav"), wManager(wManager){
+	: sp(EnemyDirections::ENEMY_DIRECTIONS_SIZE), dead(false), direction(EnemyDirections::DOWN), lastEvent(Enemy::Event::NONE), walkingSound( ASSETS_PATH("/audio/Ambiente/andando2.wav") ), wManager(wManager){
 	box = position;
 	this->enemyIndex = enemyIndex; 
 	this->baseHP = baseHP; 
@@ -22,7 +24,7 @@ Enemy::Enemy(Vec2 position, int enemyIndex, EnemyData enemyData, uint baseHP, ui
 		sp[i]= vector<Sprite>();
 	}
 
-	std::string basePath= "./assets/img/"+enemyData.spFolder;
+	std::string basePath= ASSETS_PATH("/img/"+enemyData.spFolder);
 	basePath= basePath+ "/";
 
 	sp[EnemyDirections::UP].emplace_back(basePath+"perna_tras.png", true, 0.5, 4);

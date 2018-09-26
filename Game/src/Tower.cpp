@@ -8,13 +8,15 @@
 #include "StageState.h"
 #include "Aura.h"
 
+#include "config.h"
+
 #define SORTEAR_TORRES
 
 Tower::Tower(TowerType type, Vec2 pos, Vec2 tileSize, int hp)
-		: sp(type == TowerType::SMOKE ? "./assets/img/tower/torre_fumaca.png" :
-			type == TowerType::ANTIBOMB ? "./assets/img/SpriteSheets/anti-bomba.png" :
-			type == TowerType::STUN ? "./assets/img/tower/torrestun.png" :
-			type == TowerType::SHOCK ? "./assets/img/SpriteSheets/torrechoque_lvl1.png" :
+		: sp(type == TowerType::SMOKE ? ASSETS_PATH("/img/tower/torre_fumaca.png") :
+			type == TowerType::ANTIBOMB ? ASSETS_PATH("/img/SpriteSheets/anti-bomba.png") :
+			type == TowerType::STUN ? ASSETS_PATH("/img/tower/torrestun.png") :
+			type == TowerType::SHOCK ? ASSETS_PATH("/img/SpriteSheets/torrechoque_lvl1.png") :
 			"",
 			true,
 			0.25,
@@ -37,13 +39,13 @@ Tower::Tower(TowerType type, Vec2 pos, Vec2 tileSize, int hp)
 			AddComponent(new Aura(*this, Enemy::Event::SMOKE, 400, 7.0, (NearestGOFinder&)stageState, "Enemy"));
 			break;
 		case TowerType::ANTIBOMB:
-			AddComponent(new Shooter(*this, (NearestGOFinder&)stageState, "BOMB", 5000, 2.0, Shooter::TargetPolicy::ALWAYS_NEAREST, true, 500, 5000, "./assets/img/SpriteSheets/anti-bomba_idle.png", 11, 1));
+			AddComponent(new Shooter(*this, (NearestGOFinder&)stageState, "BOMB", 5000, 2.0, Shooter::TargetPolicy::ALWAYS_NEAREST, true, 500, 5000, ASSETS_PATH("/img/SpriteSheets/anti-bomba_idle.png"), 11, 1));
 			break;
 		case TowerType::STUN:
 			AddComponent(new Aura(*this, Enemy::Event::STUN, 400, 7.0, (NearestGOFinder&)stageState, "Enemy"));
 			break;
 		case TowerType::SHOCK:
-			AddComponent(new Shooter(*this, (NearestGOFinder&)stageState, "Enemy", 5000, 2.0, Shooter::TargetPolicy::ALWAYS_NEAREST, true, 1500, 5000, "./assets/img/SpriteSheets/bullet_choquelvl1.png", 4, 1));
+			AddComponent(new Shooter(*this, (NearestGOFinder&)stageState, "Enemy", 5000, 2.0, Shooter::TargetPolicy::ALWAYS_NEAREST, true, 1500, 5000, ASSETS_PATH("/img/SpriteSheets/bullet_choquelvl1.png"), 4, 1));
 			break;
 		case TowerType::COMPUTATION:
 			break;

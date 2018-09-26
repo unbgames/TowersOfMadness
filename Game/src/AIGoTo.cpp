@@ -1,10 +1,12 @@
 #include "AIGoTo.h"
 
+#include "config.h"
+
 AIGoTo::AIGoTo(float speed,int dest,TileMap& tilemap,GameObject &associated):speed(speed),destTile(dest), pathIndex(0),associated(associated),tileMap(tilemap){
 	heuristic = new ManhattanDistance();
-	tileWeightMap = (*GameResources::GetWeightData("./assets/map/WeightData.txt"))[((Enemy&)associated).GetType()];
+	tileWeightMap = (*GameResources::GetWeightData( ASSETS_PATH("/map/WeightData.txt") ))[((Enemy&)associated).GetType()];
 	Vec2 originCoord= associated.box.Center();
-	path= GameResources::GetPath(((Enemy&)associated).GetType(), heuristic, tileMap.GetCoordTilePos(originCoord, false, 0), destTile, "./assets/map/WeightData.txt");
+	path= GameResources::GetPath(((Enemy&)associated).GetType(), heuristic, tileMap.GetCoordTilePos(originCoord, false, 0), destTile, ASSETS_PATH("/map/WeightData.txt") );
 	vecSpeed = Vec2(0.0,0.0);
 }
 

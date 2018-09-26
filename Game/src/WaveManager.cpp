@@ -7,6 +7,8 @@
 #include "Error.h"
 #include "PlayerData.h"
 
+#include "config.h"
+
 #ifdef DEBUG
 #include "InputManager.h"
 #endif
@@ -18,9 +20,9 @@ int WaveManager::waveCount = 0;
 
 WaveManager::WaveManager(TileMap& tileMap, string waveFile)
 		: tileMap(tileMap)
-		, waveStartSound("./assets/audio/Acoes/Inicio de Wave.wav")
-		, levelUpSound("./assets/audio/Acoes/Level Up.wav")
-		, lostEnemySound("./assets/audio/Acoes/perdeu1.wav")
+		, waveStartSound( ASSETS_PATH("/audio/Acoes/Inicio de Wave.wav") )
+		, levelUpSound( ASSETS_PATH("/audio/Acoes/Level Up.wav") )
+		, lostEnemySound( ASSETS_PATH("/audio/Acoes/perdeu1.wav") )
 		, betweenWavesTimer()
 		, waitingForTheNextWave(false) {
 	endWave=true;
@@ -30,7 +32,7 @@ WaveManager::WaveManager(TileMap& tileMap, string waveFile)
 	spawnGroups= tileMap.GetTileGroups(SPAWN_POINT);
 	REPORT_DEBUG2(1, "Buscando end points.");
 	endGroups= tileMap.GetTileGroups(END_POINT);
-	wavesAndEnemysData = GameResources::GetWaveData("./assets/data/wave&enemyData.txt");
+	wavesAndEnemysData = GameResources::GetWaveData( ASSETS_PATH("/data/wave&enemyData.txt") );
 	enemyIndex = 0;
 	waveIndex=-1;
 	totalWaves = wavesAndEnemysData->first.size();

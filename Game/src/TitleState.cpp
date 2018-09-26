@@ -7,6 +7,8 @@
 
 #include <cfloat>
 
+#include "config.h"
+
 #define ECLIPSE_DURATION	6.5 // s
 #define OVERLAY_FADEIN_DURATION	4 // s
 #define MAX_SPEED			20 // px/s
@@ -21,21 +23,21 @@ TitleState::TitleState()
 		, speedNuvemA(std::rand() % (MAX_SPEED - MIN_SPEED) + MIN_SPEED)
 		, speedNuvemB(std::rand() % (MAX_SPEED - MIN_SPEED) + MIN_SPEED)
 		, introTimer()
-		, clickSound("./assets/audio/Interface/Click1.wav")
+		, clickSound( ASSETS_PATH("/audio/Interface/Click1.wav") )
 		, canvas({1024,600}, UIelement::BehaviorType::STRETCH)
-		, bg("./assets/img/UI/main-menu/bg.png", UIelement::BehaviorType::STRETCH)
-		, lua("./assets/img/UI/main-menu/spritesheetlua.png", ECLIPSE_DURATION/8., 8, UIelement::BehaviorType::FIT)
-		, nuvemA("./assets/img/UI/main-menu/nuvemA.png", UIelement::BehaviorType::FILL)
-		, nuvemB("./assets/img/UI/main-menu/nuvemB.png", UIelement::BehaviorType::FILL)
-		, icc("./assets/img/UI/main-menu/icc.png", UIelement::BehaviorType::STRETCH)
-		, overlay("./assets/img/UI/main-menu/overlay.png", UIelement::BehaviorType::STRETCH)
-		, title("./assets/img/UI/main-menu/spritesheettitle.png", 1./5., 5, UIelement::BehaviorType::FIT)
+		, bg( ASSETS_PATH("/img/UI/main-menu/bg.png"), UIelement::BehaviorType::STRETCH)
+		, lua( ASSETS_PATH("/img/UI/main-menu/spritesheetlua.png"), ECLIPSE_DURATION/8., 8, UIelement::BehaviorType::FIT)
+		, nuvemA( ASSETS_PATH("/img/UI/main-menu/nuvemA.png" ), UIelement::BehaviorType::FILL)
+		, nuvemB( ASSETS_PATH("/img/UI/main-menu/nuvemB.png" ), UIelement::BehaviorType::FILL)
+		, icc( ASSETS_PATH("/img/UI/main-menu/icc.png" ), UIelement::BehaviorType::STRETCH)
+		, overlay( ASSETS_PATH("/img/UI/main-menu/overlay.png" ), UIelement::BehaviorType::STRETCH)
+		, title( ASSETS_PATH("/img/UI/main-menu/spritesheettitle.png" ), 1./5., 5, UIelement::BehaviorType::FIT)
 		, optionsGroup()
-		, playBtn("./assets/font/SHPinscher-Regular.otf", 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Jogar")
-		, editorBtn("./assets/font/SHPinscher-Regular.otf", 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Editor de Fases", UIbutton::State::DISABLED)
-		, configBtn("./assets/font/SHPinscher-Regular.otf", 95, UItext::TextStyle::BLENDED, {255,255,255,255}, std::string("Configura") + (char)0xE7 /*ç*/ + (char)0xF5 /*õ*/ + "es", UIbutton::State::DISABLED)
-		, exitBtn("./assets/font/SHPinscher-Regular.otf", 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Sair")
-		, titleMusic("./assets/audio/trilha_sonora/main_title_.ogg") {
+		, playBtn( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Jogar")
+		, editorBtn( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Editor de Fases", UIbutton::State::DISABLED)
+		, configBtn( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95, UItext::TextStyle::BLENDED, {255,255,255,255}, std::string("Configura") + (char)0xE7 /*ç*/ + (char)0xF5 /*õ*/ + "es", UIbutton::State::DISABLED)
+		, exitBtn( ASSETS_PATH("/font/SHPinscher-Regular.otf"), 95, UItext::TextStyle::BLENDED, {255,255,255,255}, "Sair")
+		, titleMusic( ASSETS_PATH("/audio/trilha_sonora/main_title_.ogg") ) {
 	Resources::ChangeMusicVolume(0);
 	Resources::ChangeSoundVolume(0);
 	introTimer.Restart();
@@ -220,14 +222,14 @@ void TitleState::Exit() {
 }
 
 void TitleState::LoadAssets(void) const{
-	Resources::GetImage("./assets/img/UI/main-menu/bg.png");
-	Resources::GetImage("./assets/img/UI/main-menu/lua.png");
-	Resources::GetImage("./assets/img/UI/main-menu/nuvemA.png");
-	Resources::GetImage("./assets/img/UI/main-menu/nuvemB.png");
-	Resources::GetImage("./assets/img/UI/main-menu/icc.png");
-	Resources::GetImage("./assets/img/UI/main-menu/overlay.png");
-	Resources::GetImage("./assets/img/UI/main-menu/spritesheettitle.png");
-	Resources::GetMusic("./assets/audio/trilha_sonora/main_title_.ogg");
-	Resources::GetMusic("./assets/audio/Interface/Click1.wav");
-	Resources::GetFont("./assets/font/SHPinscher-Regular.otf", 95);
+	Resources::GetImage( ASSETS_PATH("/img/UI/main-menu/bg.png") );
+	Resources::GetImage( ASSETS_PATH("/img/UI/main-menu/lua.png") );
+	Resources::GetImage( ASSETS_PATH("/img/UI/main-menu/nuvemA.png") );
+	Resources::GetImage( ASSETS_PATH("/img/UI/main-menu/nuvemB.png") );
+	Resources::GetImage( ASSETS_PATH("/img/UI/main-menu/icc.png") );
+	Resources::GetImage( ASSETS_PATH("/img/UI/main-menu/overlay.png") );
+	Resources::GetImage( ASSETS_PATH("/img/UI/main-menu/spritesheettitle.png") );
+	Resources::GetMusic( ASSETS_PATH("/audio/trilha_sonora/main_title_.ogg") );
+	Resources::GetMusic( ASSETS_PATH("/audio/Interface/Click1.wav") );
+	Resources::GetFont( ASSETS_PATH("/font/SHPinscher-Regular.otf", 95) );
 }

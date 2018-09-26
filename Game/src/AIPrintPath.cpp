@@ -1,5 +1,7 @@
 #include "AIPrintPath.h"
 
+#include "config.h"
+
 AIPrintPath::AIPrintPath(TileMap &tilemap, GameObject &associated):tilemap(tilemap),associated(associated){
 	heuristic = new ManhattanDistance();
 }
@@ -15,7 +17,7 @@ void AIPrintPath::Update(float dt){
 		if(associated.Is("Enemy")){
 			/*std::cout << position << " " << dest << std::endl;
 			std::cout << weightMap.empty() << std::endl;*/
-			/*for (auto elem1 : (*GameResources::GetWeightData("./assets/map/WeightData.txt"))) {
+			/*for (auto elem1 : (*GameResources::GetWeightData( ASSETS_PATH("/map/WeightData.txt") ))) {
 				for(auto elem2 : elem1){
 					std::cout << elem2.first << ":" << elem2.second << std::endl;
 				}
@@ -23,7 +25,7 @@ void AIPrintPath::Update(float dt){
 			}*/
 //			std::list<int> path = tilemap->AStar(position,dest,heuristic,weightMap);
 			Vec2 originCoord= associated.box.Center();
-			path= GameResources::GetPath(((Enemy&)associated).GetType(), heuristic, tilemap.GetCoordTilePos(originCoord, false, 0), dest, "./assets/map/WeightData.txt");
+			path= GameResources::GetPath(((Enemy&)associated).GetType(), heuristic, tilemap.GetCoordTilePos(originCoord, false, 0), dest, ASSETS_PATH("/map/WeightData.txt") );
 			tilemap.ShowPath(path);
 		}
 	}
